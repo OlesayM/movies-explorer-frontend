@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import './App.css';
 import Main from '../Main/Main';
@@ -16,29 +16,27 @@ function App() {
 
   return (
     <div className="page">
-      <BrowserRouter>
-        <Route exact path="/">
-          <Main loggedIn={loggedIn}/>
-        </Route>
-        <Route path="/movies">
-          <Movies loggedIn={loggedIn} />
-        </Route>
-        {/* <Route path="/saved-movies">
-          <SavedMovies loggedIn={loggedIn} />
-        </Route> */}
-        <Route path="/profile">
-          <Profile loggedIn={loggedIn} />
-        </Route>
-        <Route path="/signup">
-          <Register isSuccess={isSuccessRegister} />
-        </Route>
-        <Route path="/signin">
-          <Login isSuccess={isSuccessLogin}/>
-        </Route>
-        {/* <Route path="*">
-          <PageNotFound />
-        </Route> */}
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main loggedIn={loggedIn} />}></Route>
+        <Route path="/movies" element={<Movies loggedIn={loggedIn} />}></Route>
+        <Route
+          path="/saved-movies"
+          element={<SavedMovies loggedIn={loggedIn} />}
+        ></Route>
+        <Route
+          path="/profile"
+          element={<Profile loggedIn={loggedIn} />}
+        ></Route>
+        <Route
+          path="/signup"
+          element={<Register isSuccess={isSuccessRegister} />}
+        ></Route>
+        <Route
+          path="/signin"
+          element={<Login isSuccess={isSuccessLogin} />}
+        ></Route>
+        <Route path="*" element={<PageNotFound />}></Route>
+      </Routes>
     </div>
   );
 }

@@ -43,10 +43,20 @@
   position: absolute;
   top: 14px;
   right: 14px;
+  font-size: 0;
 }
 
-.element__deleteButton:hover {
-  opacity: 0.8;
+.card-movie__delete-btn{
+  width: 21px;
+  height: 21px;
+  background-image: url('../../images/icon-delete-like.svg');
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  position: absolute;
+  top: 14px;
+  right: 14px; 
 }
 
 .card-movie__container {

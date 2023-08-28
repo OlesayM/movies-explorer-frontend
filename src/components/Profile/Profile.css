@@ -26,11 +26,11 @@
 .profile__label {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #424242;
+  border-button: 1px solid #424242;
 }
 
 .profile__label:last-of-type {
-  border-bottom: none;
+  border-button: none;
 }
 
 .profile__label-text {

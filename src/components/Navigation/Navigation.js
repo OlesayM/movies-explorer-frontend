@@ -115,11 +115,11 @@ export default function Navigation({ loggedIn }) {
 
       <nav className={`navigation__mobile-menu ${isMenuOpen ? "navigation__mobile-menu_opened" : ""}`}>
         <div className="navigation__mobile-container">
-          <div className="navigation__mobile-link">
-            <NavLink exact to="/" className="menu_link hover-link" activeClassName="active" onClick={handleMenuClose}>Главная</NavLink>
-            <NavLink to="/movies" className="menu_link hover-link" activeClassName="active" onClick={handleMenuClose}>Фильмы</NavLink>
-            <NavLink to="/saved-movies" className="menu_link hover-link" activeClassName="active" onClick={handleMenuClose}>Сохранённые фильмы</NavLink>
-          </div>
+          <nav className="navigation__mobile-link">
+            <NavLink exact to="/" className="menu_link hover-link" onClick={handleMenuClose}>Главная</NavLink>
+            <NavLink to="/movies" className="menu_link hover-link" onClick={handleMenuClose}>Фильмы</NavLink>
+            <NavLink to="/saved-movies" className="menu_link hover-link" onClick={handleMenuClose}>Сохранённые фильмы</NavLink>
+          </nav>
           <Link to="/profile" className="navigation__profile-link hover-link"><span className="navigation__profile-icon" onClick={handleMenuClose}></span></Link>
         </div>
         <button className="navigation__menu-close hover-link" onClick={handleMenuClose}></button>

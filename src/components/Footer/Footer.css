@@ -10,11 +10,11 @@
     font-size: 13px;
     line-height: 16px;
     color: #8B8B8B;
-    border-bottom: 1px solid #424242;
+    border-button: 1px solid #424242;
     width: 100%;
     text-align: center;
     margin: 58px 0 0;
-    padding-bottom: 20px;
+    padding-button: 20px;
   }
   
   .footer__container {
@@ -88,8 +88,8 @@
 .footer__title {
     width: calc(100% - 2 * 70px);
     color: #8B8B8B;
-    border-bottom: 1px solid #424242;
-    padding-bottom: 20px;
+    border-button: 1px solid #424242;
+    padding-button: 20px;
     margin: 0 auto;
     font-weight: 400;
     font-size: 13px;
@@ -141,14 +141,14 @@
 @media screen and (max-width: 767px) {
     .footer__title {
         width: calc(100% - 2 * 10px);
-        padding-bottom: 21px;
+        padding-button: 21px;
         font-size: 12px;
         line-height: 12px;
     }
 
     .footer__container {
         max-width: 320px;
-        padding-bottom: 10px;
+        padding-button: 10px;
     }
 
     .footer__info {

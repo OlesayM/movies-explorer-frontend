@@ -35,17 +35,7 @@ function SearchForm(props) {
         </form>
 
         <div className="search__box-checkbox">
-          <label className="search__checkbox">
-              <input
-                name="checkbox"
-                value={checkbox}
-                className="search__checkbox-input"
-                type="checkbox"
-                // onChange={handleCheckbox}
-                checked={checkbox}
-              />
-            <span className="search__checkbox-slider"></span>
-          </label>
+        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
           <p className="search__checked-title">Короткометражки</p>
         </div>
 
