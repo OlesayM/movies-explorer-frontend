@@ -27,7 +27,7 @@ export default function Navigation({ loggedIn }) {
             <Link className="navigation__saved-movies-link" to="/saved-movies">Сохранённые фильмы</Link>
           </div>
           <div className="navigation__profile navigation-desktop">
-            <Link to="/profile" className="navigation__profile-link"><span className="navigation__profile-icon"></span></Link>
+            <Link to="/profile" className="navigation__profile-link navigation__profile-link_type_desktop"><span className="navigation__profile-icon"></span></Link>
           </div>
           <button className="navigation__menu-icon" onClick={handleMenuOpen} type="button"></button>
         </>
@@ -36,7 +36,7 @@ export default function Navigation({ loggedIn }) {
       <nav className={`navigation__mobile-menu ${isMenuOpen ? "navigation__mobile-menu_opened" : ""}`}>
         <div className="navigation__mobile-container">
           <nav className="navigation__mobile-link">
-            <NavLink exact to="/" className="menu_link" onClick={handleMenuClose}>Главная</NavLink>
+            <NavLink to="/" className="menu_link" onClick={handleMenuClose}>Главная</NavLink>
             <NavLink to="/movies" className="menu_link" onClick={handleMenuClose}>Фильмы</NavLink>
             <NavLink to="/saved-movies" className="menu_link" onClick={handleMenuClose}>Сохранённые фильмы</NavLink>
           </nav>

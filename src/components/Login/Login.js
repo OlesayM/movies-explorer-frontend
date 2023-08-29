@@ -35,8 +35,8 @@ function Login() {
               name="password"
               placeholder="Пароль"
               required
-              minlength="8"
-              maxlength="16"
+              minLength="8"
+              maxLength="16"
             />
             {/* <span id="password-input-error"className="login__error login__error_visible">Текст</span> */}
           </div>
@@ -45,7 +45,7 @@ function Login() {
         <button className= "login__button" type="submit"  >Войти</button>
         <div className="form__link-container">
           <p className="form__question">Ещё не зарегистрированы?</p>
-          <Link to="signup" className="login__link">Регистрация</Link>
+          <Link to="/signup" className="login__link">Регистрация</Link>
         </div>
       </form>
 

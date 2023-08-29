@@ -48,8 +48,8 @@ function Register() {
               name="password"
               placeholder="Пароль"
               required
-              minlength="8"
-              maxlength="16"
+              minLength="8"
+              maxLength="16"
               />
             {/* <span id="password-input-error"className="register__error register__error_visible">Текст</span> */}
           </div>
