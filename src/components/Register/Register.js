@@ -4,10 +4,10 @@ import React from 'react';
 
 function Register() {
   return (
-    <section className="entrance">
+    <section className="register">
       <Link to="/" className="header__logo" />
-      <h2 className="entrance__title">Добро пожаловать!</h2>
-      <form className="form form_type_register" >
+      <h2 className="register__title">Добро пожаловать!</h2>
+      <form className="form" >
         <fieldset className="form__container">
           <div className="form__input-container">
             <label className="form__label" htmlFor="name-input">Имя</label>
@@ -17,6 +17,9 @@ function Register() {
               type="text"
               name="name"
               placeholder="Имя пользователя"
+              required
+              minLength="3"
+              maxLength="20"
             />
             {/* <span id="name-input-error"className="register__error register__error_visible">Текст</span> */}
           </div>
@@ -29,6 +32,9 @@ function Register() {
               type="email"
               name="email"
               placeholder="E-mail"
+              required
+              minLength="3"
+              maxLength="40"
                />
             {/* <span id="email-input-error"className="register__error register__error_visible">Текст</span> */}
           </div>
@@ -41,17 +47,20 @@ function Register() {
               type="password"
               name="password"
               placeholder="Пароль"
+              required
+              minlength="8"
+              maxlength="16"
               />
             {/* <span id="password-input-error"className="register__error register__error_visible">Текст</span> */}
           </div>
         </fieldset>
 
-        <button className= "button button_type_form hover-button" type="submit" >
+        <button className= "register__button" type="submit" >
           Зарегистрироваться
         </button>
         <div className="form__link-container">
           <p className="form__question">Уже зарегистрированы?</p>
-          <Link to="signin" className="link link_type_entrance hover-link">Войти</Link>
+          <Link to="/signin" className="register__link">Войти</Link>
         </div>
       </form>
     </section>

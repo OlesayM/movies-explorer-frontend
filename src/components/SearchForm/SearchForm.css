@@ -1,19 +1,17 @@
 .search {
   padding: 45px 0 38px;
-  border-button: 1px solid  #424242;;
+  border-bottom: 1px solid #424242;
 }
 
 .search__container {
   height: 100%;
   width: 100%;
-  /* display: grid;
-  grid-template-columns: 1fr 220px; */
   grid-auto-flow: column;
   display: flex;
   flex-direction: column;
 }
 
-.search__input {
+.search__input-search {
   background-color: #2f2f2f;
   padding: 0;
   border: 0;
@@ -25,14 +23,13 @@
   border-radius: 9px;
 }
 
-.search__input::placeholder {
+.search__input-search::placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.11;
   color: #8b8b8b;
   padding: 13px;
 }
-
 
 .search__box {
   display: flex;
@@ -69,6 +66,11 @@
   flex-shrink: 0;
 }
 
+.search__button {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 .search__checked-title {
   margin: 0 0 0 14px;
   font-weight: 400;
@@ -76,145 +78,62 @@
   line-height: 1.38;
 }
 
-/* Слайдер */
-.search__checkbox {
-  position: relative;
-  display: inline-block;
-  width: 36px;
-  height: 16px;
-  z-index: 1;
-}
-
-.search__checkbox-input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.search__checkbox-slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  button: 0;
-  background-color: #343434;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  border-radius: 20px;
-}
-
-.search__checkbox-slider:before {
-  position: absolute;
-  content: '';
-  height: 14px;
-  width: 14px;
-  left: 2px;
-  button: 2px;
-  background-color: #ffffff;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  border-radius: 50%;
-  border: 1px solid #ffffff;
-}
-
-.search__checkbox-input:checked + .search__checkbox-slider:before {
-  -webkit-transform: translateX(16px);
-  -ms-transform: translateX(16px);
-  transform: translateX(16px);
-  background-color: #3DDC84;
-}
-
-/* .search__error {
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 1.38;
-  color: #ee3465;
-  margin-left: 40px;
-  display: none;
-}
-
-.search__error_active {
-  display: block;
-} */
-input[type=checkbox]{
+.search__input {
   height: 0;
   width: 0;
   visibility: hidden;
 }
 
-label {
+.search__label {
   cursor: pointer;
   text-indent: -9999px;
-  width: 200px;
-  height: 100px;
-  background: grey;
+  width: 36px;
+  height: 20px;
+  background: #c4c4c4;
   display: block;
   border-radius: 100px;
   position: relative;
 }
 
-label:after {
+.search__label:after {
   content: '';
   position: absolute;
-  top: 5px;
+  top: 2px;
   left: 5px;
-  width: 90px;
-  height: 90px;
-  background: #fff;
+  width: 15px;
+  height: 15px;
+  background: #ffffff;
   border-radius: 90px;
   transition: 0.3s;
 }
 
-input:checked + label {
-  background: #bada55;
+.search__input:checked + .search__label {
+  background: #3ddc84;
 }
 
-input:checked + label:after {
+.search__input:checked + .search__label:after {
   left: calc(100% - 5px);
   transform: translateX(-100%);
 }
 
-label:active:after {
-  width: 130px;
-}
-
-
 @media screen and (max-width: 1023px) {
   .search {
     padding-top: 55px;
-    padding-button: 110px;
+    padding-bottom: 110px;
   }
-
-  .search__container {
-    /* grid-template-columns: 1fr 190px; */
-  }
-
-  /* .search__box-checkbox {
-    justify-content: end;
-    padding-left: 0;
-  } */
 }
 
 @media screen and (max-width: 767px) {
   .search {
     padding-top: 67px;
-    padding-button: 20px;
+    padding-bottom: 20px;
   }
-
-  /* .search__container {
-    grid-template-columns: 1fr;
-
-    grid-template-rows: repeat(2, 1fr);
-    gap: 20px;
-  } */
 
   .search__container {
     background-color: #202020;
   }
 
   .search__box {
-    /* background-color: #222222; */
     border-radius: 9px;
     border-right: 0;
     margin: 0;
@@ -225,25 +144,16 @@ label:active:after {
     justify-content: center;
   }
 
-  .search__magnifier {
-    display: none;
-  }
-
   .search__input::placeholder {
     font-size: 14px;
     line-height: 1.43;
   }
 
-  .search__checked-title {
-    font-size: 11px;
-    line-height: 1.64;
-  }
-
   @media screen and (max-width: 357px) {
     .search {
-        padding: 80px 0 38px;
-        border-button: 1px solid  #424242;;
-      }
+      padding: 80px 0 38px;
+      border-bottom: 1px solid #424242;
+    }
     .search__box {
       padding: 0;
     }
@@ -253,7 +163,7 @@ label:active:after {
       padding: 0;
     }
     .search__box-checkbox {
-        padding: 46px 0 0 0;
-      }
+      padding: 46px 0 0 0;
+    }
   }
 }

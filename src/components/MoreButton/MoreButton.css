@@ -18,6 +18,10 @@
   border: 1px solid #424242;
   padding: 0;
 }
+.more__button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
 @media screen and (max-width: 649px) {
     .more__button {
       width: 240px;

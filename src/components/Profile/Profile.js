@@ -23,7 +23,7 @@ function Profile({ loggedIn,isSuccess }) {
               id="name"
               name="name"
               placeholder="Имя"
-              disabled={!isInputActive}
+              disabled={isInputActive}
             />
           </label>
           {/* <span id="name-input-error"className= " profile__error profile__error_visible"> Текст </span> */}
@@ -53,7 +53,7 @@ function Profile({ loggedIn,isSuccess }) {
             : <>
             {/* <span className= " profile__message profile__message_visible"> При обновлении профиля произошла ошибка </span> */}
               <button
-                className={`profile__form_save-button ${isDisabled && "profile__form_save-button_disabled"}`}
+                className={`profile__form_save-button ${!isDisabled && "profile__form_save-button_disabled"}`}
                 type="submit"
                 >
                 Сохранить

@@ -32,6 +32,11 @@
   line-height: 9px;
 }
 
+.card-movie__save-btn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 .card-movie__save-btn_type_active {
   width: 30px;
   height: 30px;
@@ -44,6 +49,11 @@
   top: 14px;
   right: 14px;
   font-size: 0;
+}
+
+.card-movie__save-btn_type_active:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .card-movie__delete-btn{
@@ -59,6 +69,10 @@
   right: 14px; 
 }
 
+.card-movie__delete-btn:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
 .card-movie__container {
   display: flex;
   justify-content: space-between;
@@ -84,18 +98,17 @@
   color: #8b8b8b;
   background-color: #2f2f2f;
   padding: 3px 4px 3px 4px;
-  /* border-top: 1px solid #424242; */
   margin: 0;
 }
 
 @media screen and (max-width: 1023px) {
-  .movies-card__poster {
+  .card-movie__img {
     height: 190px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .movies-card__poster {
+  .card-movie__img {
     height: 168px;
   }
 }

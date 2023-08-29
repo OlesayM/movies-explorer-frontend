@@ -10,7 +10,6 @@ function Movies(loggedIn) {
     <Header loggedIn={loggedIn}/>
     <main className="movies-page">
       <SearchForm />
-      {/* <Preloader /> */}
       <MoviesCardList />
     </main>
     <Footer loggedIn={loggedIn}/>

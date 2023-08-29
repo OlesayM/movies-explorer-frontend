@@ -4,7 +4,7 @@ import React from 'react';
 function MoreButton() {
   return (
     <section className="more">
-      <button className="more__button">Ещё</button>
+      <button className="more__button" type="submit">Ещё</button>
     </section>
   );
 }

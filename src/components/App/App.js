@@ -10,7 +10,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true); // вошедший в систему
+  const [loggedIn, setLoggedIn] = useState(false); // вошедший в систему
   const [isSuccessRegister, setIsSuccessRegister] = useState(false);
   const [isSuccessLogin, setIsSuccessLogin] = useState(false);
 

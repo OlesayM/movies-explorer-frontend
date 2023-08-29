@@ -1,14 +1,14 @@
-import '../Register/Register.css';
+import '../Login/Login.css';
 import { Link } from 'react-router-dom';
 import React from 'react';
 
 function Login() {
   
   return (
-    <section className="entrance">
+    <section className="login">
       <Link to="/" className="header__logo" />
-      <h2 className="entrance__title">Рады видеть!</h2>
-      <form className="form form_type_register">
+      <h2 className="login__title">Рады видеть!</h2>
+      <form className="form">
         <fieldset className="form__container">
           <div className="form__input-container">
             <label className="form__label" htmlFor="email-input">E-mail</label>
@@ -34,17 +34,18 @@ function Login() {
               type="password"
               name="password"
               placeholder="Пароль"
-              autoComplete="on"
               required
+              minlength="8"
+              maxlength="16"
             />
             {/* <span id="password-input-error"className="login__error login__error_visible">Текст</span> */}
           </div>
         </fieldset>
 
-        <button className= "button button_type_form hover-button" type="submit"  >Войти</button>
+        <button className= "login__button" type="submit"  >Войти</button>
         <div className="form__link-container">
           <p className="form__question">Ещё не зарегистрированы?</p>
-          <Link to="signup" className="link link_type_entrance hover-link">Регистрация</Link>
+          <Link to="signup" className="login__link">Регистрация</Link>
         </div>
       </form>
 
