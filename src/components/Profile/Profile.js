@@ -1,18 +1,19 @@
 import React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Profile.css';
 import Header from '../Header/Header';
 
 function Profile({ loggedIn,isSuccess }) {
-    const [isInputActive, setIsInputActive] = useState(true);
-    const [isInfoChanged, setIsInfoChanged] = useState(true);
+    const [isInputActive, setIsInputActive] = useState(false);
+    const [isInfoChanged, setIsInfoChanged] = useState(false);
     
     const isDisabled = !isSuccess;
     return (
   <>
   <Header loggedIn={loggedIn}/>
       <section className="profile">
-        <h1 className="profile__greeting">Привет, ИМЯ!</h1>
+        <h1 className="profile__greeting">Привет, Виталий!</h1>
         <form className="profile__form">
   
           <label className="profile__label">
@@ -48,7 +49,8 @@ function Profile({ loggedIn,isSuccess }) {
               type="button">
               Редактировать
             </button>
-            <button type="button" className="profile__form_exit-button">Выйти из аккаунта</button>
+            <Link to="/" className="profile__link-exit">Выйти из аккаунта</Link>
+            {/* <button type="button" className="profile__form_exit-button">Выйти из аккаунта</button> */}
             </> 
             : <>
             {/* <span className= " profile__message profile__message_visible"> При обновлении профиля произошла ошибка </span> */}

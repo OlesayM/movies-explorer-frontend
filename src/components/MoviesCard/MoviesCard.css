@@ -12,6 +12,7 @@
   height: 201px;
   object-fit: cover;
   width: 100%;
+  border-radius: 5px;
 }
 
 .card-movie__save-btn {
@@ -46,8 +47,8 @@
   background-position: center;
   border: none;
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 10px;
+  right: 10px;
   font-size: 0;
 }
 
@@ -77,10 +78,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 7px 0 25px;
+  /* margin: 7px 0 25px; */
+  padding: 12px 15px 21px 13px;
 }
 
 .card-movie__name {
+  max-width: 250px;
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
@@ -88,7 +91,7 @@
 }
 
 .card-movie__duration {
-  width: 52px;
+  width: 45px;
   height: 12px;
   border-radius: 3px;
   font-weight: 400;
@@ -105,10 +108,25 @@
   .card-movie__img {
     height: 190px;
   }
+  .card-movie__container{
+    padding: 22px 0px 11px 0px;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .card-movie__img {
     height: 168px;
+  }
+}
+@media screen and (max-width: 357px) {
+  .card-movie__save-btn {
+    top: 6px;
+    right: 6px;
+  }
+  .card-movie__name{
+    font-size: 12px;
+  }
+  .card-movie__container{
+    padding: 15px 0px 11px 0px;
   }
 }

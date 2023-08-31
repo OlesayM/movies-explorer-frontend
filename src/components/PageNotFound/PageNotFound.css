@@ -18,22 +18,22 @@
   line-height: 19px;
   margin: 5px 0 184px;
 }
-.not-found__back {
-  background-color: transparent;
-  border: none;
-  color: #4285f4;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: normal;
-}
-.not-found__back:hover {
-  opacity: 0.7;
+
+.not-found__back{
+color: #4285F4;
+font-size: 14px;
+font-weight: 400;
+line-height: normal;
+text-decoration: none;
 }
 
 @media screen and (max-width: 1023px) {
   .not-found__title {
-    margin-top: 328px;
+    margin-top: 408px;
   }
+  .not-found__back{
+    margin-bottom: 222px;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -47,4 +47,13 @@
     line-height: 15px;
     margin: 10px 0 284px;
   }
+}
+@media screen and (max-width: 767px) {
+  .not-found__title {
+    margin-top: 329px;
+  }
+  .not-found__back{
+    margin-bottom: 30px;
+    }
+  
 }

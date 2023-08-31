@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import MoreButton from '../MoreButton/MoreButton';
 
 function Movies(loggedIn) {
   return (
@@ -11,6 +12,7 @@ function Movies(loggedIn) {
     <main className="movies-page">
       <SearchForm />
       <MoviesCardList />
+      <MoreButton/>
     </main>
     <Footer loggedIn={loggedIn}/>
     </>

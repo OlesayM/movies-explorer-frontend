@@ -2,21 +2,19 @@ import './Techs.css';
 
 function Techs() {
   return (
-    <section className="techs" id="techs">
-      <h2 className="techs__title">Технологии</h2>
-      <div className="techs__container">
-        <h3 className="techs__subtitle">7 технологий</h3>
-        <p className="techs__paragraph">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
-        <ul className="techs-list">
-          <li className="techs-list__title">HTML</li>
-          <li className="techs-list__title">CSS</li>
-          <li className="techs-list__title">JS</li>
-          <li className="techs-list__title">React</li>
-          <li className="techs-list__title">Git</li>
-          <li className="techs-list__title">Express.js</li>
-          <li className="techs-list__title">mongoDB</li>
-        </ul>
-      </div>
+<section className="techs">
+      <h2 className="techs__title" id="techs">Технологии</h2>
+      <h3 className="techs__subtitle">7 технологий</h3>
+      <p className="techs__description">На курсе веб-разработки мы освоили технологии, которые применили в&nbsp;дипломном проекте.</p>
+      <ul className="techs__list">
+        <li className="techs__list-item">HTML</li>
+        <li className="techs__list-item">CSS</li>
+        <li className="techs__list-item">JS</li>
+        <li className="techs__list-item">React</li>
+        <li className="techs__list-item">Git</li>
+        <li className="techs__list-item">Express.js</li>
+        <li className="techs__list-item">mongoDB</li>
+      </ul>
     </section>
   )
 }
