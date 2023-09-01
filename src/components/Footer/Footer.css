@@ -40,10 +40,12 @@
   color: #ffffff;
   margin-left: 20px;
 }
+
 .footer__link:hover{
 cursor: pointer;
 opacity: 0.7;
 }
+
 @media screen and (max-width: 1279px) {
   .footer__container {
     width: calc(100% - 50px * 2);
@@ -103,12 +105,15 @@ opacity: 0.7;
     padding-top: 138px;
 
   }
+
   .footer__info{
     margin: 30px auto 20px auto;
   }
+
   .footer__copyright {
     color: #8b8b8b;
   }
+  
   .footer__title{
     margin: auto;
     padding-bottom: 27px;

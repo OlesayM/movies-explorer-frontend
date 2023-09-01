@@ -93,13 +93,12 @@
   }
 }
 @media screen and (max-width: 680px) {
-  
-
   .techs__list {
     padding-top: 50px;
     grid-template-columns: repeat(2, 84px);
     grid-template-rows: repeat(4, 57px);
   }
+
   .techs__subtitle {
     max-width: 292px;
     padding-top: 60px;
@@ -113,10 +112,6 @@
     padding: 91px 18px 50px 18px;
     background-color: #202020;
   }
-
-
-
-  
 
   .techs__description {
     max-width: 292px;

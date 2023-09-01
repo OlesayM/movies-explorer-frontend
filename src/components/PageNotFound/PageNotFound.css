@@ -31,6 +31,7 @@ text-decoration: none;
   .not-found__title {
     margin-top: 408px;
   }
+
   .not-found__back{
     margin-bottom: 222px;
     }
@@ -48,10 +49,12 @@ text-decoration: none;
     margin: 10px 0 284px;
   }
 }
+
 @media screen and (max-width: 767px) {
   .not-found__title {
     margin-top: 329px;
   }
+  
   .not-found__back{
     margin-bottom: 30px;
     }

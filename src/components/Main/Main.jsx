@@ -5,6 +5,7 @@ import Promo from "../Promo/Promo";
 import Techs from "../Techs/Techs";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+// import Preloader from "../Preloader/Preloader";
 
 function Main({loggedIn}) {
     return (
@@ -15,6 +16,7 @@ function Main({loggedIn}) {
             <Techs />
             <AboutMe />
             <Portfolio /> 
+            {/* <Preloader/> */}
             <Footer />
         </div>
     )

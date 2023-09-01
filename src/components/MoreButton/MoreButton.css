@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
 }
+
 .more__button {
   font-size: 12px;
   line-height: normal;
@@ -18,21 +19,25 @@
   border: 1px solid #424242;
   padding: 0;
 }
+
 .more__button:hover {
   cursor: pointer;
   opacity: 0.8;
 }
+
 @media screen and (max-width: 768px) {
   .more__button {
     margin-top: 57px;
   }
 }
+
 @media screen and (max-width: 649px) {
     .more__button {
       width: 240px;
       height: 36px;
     }
   }
+  
   @media screen and (max-width: 357px) {
     .more__button {
       margin-top: 33px;

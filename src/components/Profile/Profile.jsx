@@ -50,7 +50,6 @@ function Profile({ loggedIn,isSuccess }) {
               Редактировать
             </button>
             <Link to="/" className="profile__link-exit">Выйти из аккаунта</Link>
-            {/* <button type="button" className="profile__form_exit-button">Выйти из аккаунта</button> */}
             </> 
             : <>
             {/* <span className= " profile__message profile__message_visible"> При обновлении профиля произошла ошибка </span> */}

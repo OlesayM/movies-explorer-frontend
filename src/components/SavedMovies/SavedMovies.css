@@ -4,6 +4,7 @@
     width: calc(100% - 70px*2);
     margin: auto;
   }
+
   @media screen and (max-width: 1023px) {
     .saved-movies {
       width: calc(100% - 30px*2);
@@ -15,6 +16,7 @@
       width: calc(100% - 14px * 2);
     }
   }
+  
   @media screen and (max-width: 357px) {
     .saved-movies {
       width: calc(100% - 10px * 2);

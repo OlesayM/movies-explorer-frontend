@@ -52,6 +52,10 @@
   text-align: right;
 }
 
+.profile__input:focus {
+  border-bottom: 1px solid #3456F3;;
+}
+
 .profile__form_edit-button {
   padding-top: 204px;
   font-size: 13px;
@@ -112,9 +116,11 @@
   .profile {
     margin: 230px 10px 269px;
   }
+
   .profile__form {
     margin-top: 80px;
   }
+
   .profile__form_edit-button {
     padding-top: 195px;
   }
@@ -124,16 +130,20 @@
   .profile {
     margin: 70px 30px 269px;
   }
+
   .profile__form {
     margin-top: 65px;
     margin-bottom: 40px;
   }
+
   .profile__form_edit-button {
     padding-top: 364px;
   }
+
   .profile__form_edit-button {
     font-size: 12px;
   }
+  
   .profile__link-exit {
     font-size: 12px;
   }
