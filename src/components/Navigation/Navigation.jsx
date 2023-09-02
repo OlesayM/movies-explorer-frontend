@@ -39,19 +39,19 @@ export default function Navigation({ loggedIn }) {
         </>
       )}
 
-      <nav className={`navigation__mobile-menu ${isMenuOpen ? "navigation__mobile-menu_opened" : ""}`}>
-        <div className="navigation__mobile-container">
-          <nav className="navigation__mobile-link">
-            <NavLink to="/" className={({ isActive}) => isActive ? "navigation__menu-link_active" : "navigation__menu-link"
+      <nav className={`mobile-menu ${isMenuOpen ? "mobile-menu_opened" : ""}`}>
+        <div className="mobile-container">
+          <nav className="mobile-navigation">
+            <NavLink to="/" className={({ isActive}) => isActive ? "menu-link_active" : "menu-link"
   } onClick={handleMenuClose}>Главная</NavLink>
-            <NavLink to="/movies" className={({ isActive}) => isActive ? "navigation__menu-link_active" : "navigation__menu-link"
+            <NavLink to="/movies" className={({ isActive}) => isActive ? "menu-link_active" : "menu-link"
   } onClick={handleMenuClose}>Фильмы</NavLink>
-            <NavLink to="/saved-movies" className={({ isActive}) => isActive ? "navigation__menu-link_active" : "navigation__menu-link"
+            <NavLink to="/saved-movies" className={({ isActive}) => isActive ? "menu-link_active" : "menu-link"
   } onClick={handleMenuClose}>Сохранённые фильмы</NavLink>
           </nav>
-          <Link to="/profile" className="navigation__profile-link"><span className="navigation__profile-icon" onClick={handleMenuClose}></span></Link>
+          <Link to="/profile" className="mobile-container__profile-link"><span className="mobile-container__profile-icon" onClick={handleMenuClose}></span></Link>
         </div>
-        <button className="navigation__menu-close" onClick={handleMenuClose}></button>
+        <button className="btn-close" onClick={handleMenuClose}></button>
       </nav>
     </nav>
   );

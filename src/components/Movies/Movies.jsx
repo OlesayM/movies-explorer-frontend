@@ -9,11 +9,11 @@ function Movies(loggedIn) {
   return (
     <>
     <Header loggedIn={loggedIn}/>
-    <main className="movies-page">
+    <section className="movies-page">
       <SearchForm />
       <MoviesCardList />
       <MoreButton/>
-    </main>
+    </section>
     <Footer loggedIn={loggedIn}/>
     </>
   );

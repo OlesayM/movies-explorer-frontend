@@ -6,7 +6,7 @@ function Login() {
   
   return (
     <section className="login">
-      <Link to="/" className="header__logo" />
+      <Link to="/" className="login__logo" />
       <h2 className="login__title">Рады видеть!</h2>
       <form className="form">
         <fieldset className="form__container">

@@ -5,7 +5,7 @@ import React from 'react';
 function Register() {
   return (
     <section className="register">
-      <Link to="/" className="header__logo" />
+      <Link to="/" className="register__logo" />
       <h2 className="register__title">Добро пожаловать!</h2>
       <form className="form" >
         <fieldset className="form__container">

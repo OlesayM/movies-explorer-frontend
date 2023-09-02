@@ -10,7 +10,7 @@ function MoviesCard() {
   const [isSaved, setIsSaved] = useState(false);
   return (
     <>
-      <li className="card-movie">
+      <section className="card-movie">
           <button
             className={`card-movie__save-btn  ${!isSaved ? 'card-movie__save-btn_type_active' : ''} ${locationMovies ? 'card-movie__delete-btn' : ''}`}
             >Сохранить
@@ -20,7 +20,7 @@ function MoviesCard() {
           <h2 className="card-movie__name">33 слова о дизайне</h2>
           <span className="card-movie__duration">1ч 17м</span>
         </div>
-      </li>
+      </section>
     </>
   );
 }

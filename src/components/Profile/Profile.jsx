@@ -45,7 +45,7 @@ function Profile({ loggedIn,isSuccess }) {
             ?
             <>
             <button
-              className="profile__form_edit-button"
+              className="profile__edit-button"
               type="button">
               Редактировать
             </button>
@@ -54,7 +54,7 @@ function Profile({ loggedIn,isSuccess }) {
             : <>
             {/* <span className= " profile__message profile__message_visible"> При обновлении профиля произошла ошибка </span> */}
               <button
-                className={`profile__form_save-button ${!isDisabled && "profile__form_save-button_disabled"}`}
+                className={`profile__save-button ${!isDisabled && "profile__save-button_disabled"}`}
                 type="submit"
                 >
                 Сохранить

@@ -56,7 +56,7 @@
   border-bottom: 1px solid #3456F3;;
 }
 
-.profile__form_edit-button {
+.profile__edit-button {
   padding-top: 204px;
   font-size: 13px;
   line-height: 16px;
@@ -66,12 +66,12 @@
   cursor: pointer;
 }
 
-.profile__form_edit-button:hover {
+.profile__edit-button:hover {
   cursor: pointer;
   opacity: 0.8;
 }
 
-.profile__form_save-button {
+.profile__save-button {
   margin-top: 220px;
   background-color: #4285f4;
   border: none;
@@ -84,12 +84,12 @@
   width: 100%;
 }
 
-.profile__form_save-button:hover {
+.profile__save-button:hover {
   cursor: pointer;
   opacity: 0.8;
 }
 
-.profile__form_save-button_disabled {
+.profile__save-button_disabled {
   color: #c2c2c2;
   background-color: #f8f8f8;
   cursor: none;
@@ -121,7 +121,7 @@
     margin-top: 80px;
   }
 
-  .profile__form_edit-button {
+  .profile__edit-button {
     padding-top: 195px;
   }
 }
@@ -136,14 +136,11 @@
     margin-bottom: 40px;
   }
 
-  .profile__form_edit-button {
+  .profile__edit-button {
     padding-top: 364px;
-  }
-
-  .profile__form_edit-button {
     font-size: 12px;
   }
-  
+
   .profile__link-exit {
     font-size: 12px;
   }

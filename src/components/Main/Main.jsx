@@ -9,16 +9,18 @@ import Footer from "../Footer/Footer";
 
 function Main({loggedIn}) {
     return (
-        <div className="main">
-            <Header loggedIn={loggedIn}/>
+        <>
+        <Header loggedIn={loggedIn}/>
+        <main className="main">
             <Promo />
             <AboutProject />
             <Techs />
             <AboutMe />
             <Portfolio /> 
             {/* <Preloader/> */}
-            <Footer />
-        </div>
+        </main>
+         <Footer />
+         </>
     )
 }
 

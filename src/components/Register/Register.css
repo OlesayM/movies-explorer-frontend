@@ -4,6 +4,15 @@
   margin: auto;
 }
 
+.register__logo {
+  display: block;
+  width: 38px;
+  height: 38px;
+  background-image: url('../../images/logo.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .register__title {
   margin: 40px 0 0;
   font-weight: 500;
