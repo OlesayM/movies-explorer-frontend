@@ -1,0 +1,136 @@
+.card-movie {
+  list-style: none;
+  min-width: 270px;
+  min-height: 229px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card-movie__img {
+  width: 360px;
+  height: 201px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.card-movie__save-btn {
+  width: 72px;
+  height: 21px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 30px;
+  background: #313131;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  color: #FFF;
+  text-align: center;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 9px;
+}
+
+.card-movie__save-btn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.card-movie__save-btn_type_active {
+  width: 30px;
+  height: 30px;
+  background-image: url('../../images/save.svg');
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0;
+}
+
+.card-movie__save-btn_type_active:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.card-movie__delete-btn{
+  width: 21px;
+  height: 21px;
+  background-image: url('../../images/icon-delete-like.svg');
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  position: absolute;
+  top: 14px;
+  right: 14px; 
+}
+
+.card-movie__delete-btn:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.card-movie__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px 21px 13px;
+}
+
+.card-movie__name {
+  max-width: 250px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0;
+}
+
+.card-movie__duration {
+  width: 45px;
+  height: 12px;
+  border-radius: 3px;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+  color: #8b8b8b;
+  background-color: #2f2f2f;
+  padding: 3px 4px 3px 4px;
+  margin: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .card-movie__img {
+    height: 190px;
+  }
+
+  .card-movie__container{
+    padding: 22px 0px 11px 0px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card-movie__img {
+    height: 168px;
+  }
+}
+
+@media screen and (max-width: 357px) {
+  .card-movie__save-btn {
+    top: 6px;
+    right: 6px;
+  }
+
+  .card-movie__name{
+    font-size: 12px;
+  }
+  
+  .card-movie__container{
+    padding: 15px 0px 11px 0px;
+  }
+}
