@@ -1,19 +1,31 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Profile.css';
 import Header from '../Header/Header';
+import { useFormValidation } from '../../hooks/useFormValidation';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function Profile({ loggedIn,isSuccess }) {
-    const [isInputActive, setIsInputActive] = useState(false);
-    const [isInfoChanged, setIsInfoChanged] = useState(false);
+function Profile( {loggedIn, logout}) {
     
-    const isDisabled = !isSuccess;
+    const currentUser = useContext(CurrentUserContext);
+    const { values, handleChange, setValues, setIsValid, isValid, errors, resetForm } = useFormValidation();
+    const [isInfoChanged, setIsInfoChanged] = useState(false);
+    const [isInputActive, setIsInputActive] = useState(false);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    
+    useEffect(() => {
+      setName(currentUser.user.name);
+      setEmail(currentUser.user.email);
+    }, [currentUser]);
+
+
     return (
   <>
   <Header loggedIn={loggedIn}/>
       <section className="profile">
-        <h1 className="profile__greeting">Привет, Виталий!</h1>
+        <h1 className="profile__greeting">Привет,{currentUser.user.name}!</h1>
         <form className="profile__form">
   
           <label className="profile__label">
@@ -21,10 +33,12 @@ function Profile({ loggedIn,isSuccess }) {
             <input
               className="profile__input"
               type="text"
+              value={name || ''}
+              onChange={handleChange}
               id="name"
               name="name"
-              placeholder="Имя"
-              disabled={isInputActive}
+              // placeholder="Имя"
+              // disabled={isInputActive}
             />
           </label>
           {/* <span id="name-input-error"className= " profile__error profile__error_visible"> Текст </span> */}
@@ -33,10 +47,12 @@ function Profile({ loggedIn,isSuccess }) {
             <input
               className="profile__input"
               type="email"
+              value={email || ''}
+              onChange={handleChange}
               id="email"
               name="email"
-              placeholder="Email"
-              disabled={!isInputActive}
+              // placeholder="Email"
+              // disabled={!isInputActive}
             />
           </label> 
           {/* <span id="email-input-error"className= " profile__error profile__error_visible">Текст</span> */}
@@ -49,12 +65,13 @@ function Profile({ loggedIn,isSuccess }) {
               type="button">
               Редактировать
             </button>
-            <Link to="/" className="profile__link-exit">Выйти из аккаунта</Link>
+            <Link to="/" className="profile__link-exit" onClick={logout} >Выйти из аккаунта</Link>
             </> 
             : <>
             {/* <span className= " profile__message profile__message_visible"> При обновлении профиля произошла ошибка </span> */}
               <button
-                className={`profile__save-button ${!isDisabled && "profile__save-button_disabled"}`}
+              className="profile__save-button"
+                // className={`profile__save-button ${!isDisabled && "profile__save-button_disabled"}`}
                 type="submit"
                 >
                 Сохранить

@@ -1,13 +1,36 @@
 import './Register.css';
 import { Link } from 'react-router-dom';
-import React from 'react';
+import {React, useState} from 'react';
 
-function Register() {
+function Register({handleRegistration}) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleRegistration({
+      name: name,
+      email: email,
+      password: password,
+    });
+  }
+
+  function handleChangeName(e) {
+    setName(e.target.value);
+  }
+  function handleChangeEmail(e) {
+    setEmail(e.target.value);
+  }
+
+  function handleChangePassword(e) {
+    setPassword(e.target.value);
+  }
   return (
     <section className="register">
       <Link to="/" className="register__logo" />
       <h2 className="register__title">Добро пожаловать!</h2>
-      <form className="form" >
+      <form className="form" onSubmit={handleSubmit} >
         <fieldset className="form__container">
           <div className="form__input-container">
             <label className="form__label" htmlFor="name-input">Имя</label>
@@ -20,6 +43,8 @@ function Register() {
               required
               minLength="3"
               maxLength="20"
+              value={name || ''}
+              onChange={handleChangeName}
             />
             {/* <span id="name-input-error"className="register__error register__error_visible">Текст</span> */}
           </div>
@@ -35,6 +60,8 @@ function Register() {
               required
               minLength="3"
               maxLength="40"
+              value={email || ''}
+              onChange={handleChangeEmail}
                />
             {/* <span id="email-input-error"className="register__error register__error_visible">Текст</span> */}
           </div>
@@ -49,7 +76,9 @@ function Register() {
               placeholder="Пароль"
               required
               minLength="8"
-              maxLength="16"
+              maxLength="8"
+              value={password || ''}
+              onChange={handleChangePassword}
               />
             {/* <span id="password-input-error"className="register__error register__error_visible">Текст</span> */}
           </div>
