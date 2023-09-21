@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCallback } from "react";
 
- export function useFormValidation() {
+export function useFormValidation() {
     const [values, setValues] = React.useState({});
     const [errors, setErrors] = React.useState({});
     const [isValid, setIsValid] = React.useState(false);
@@ -35,5 +35,3 @@ import { useCallback } from "react";
       setIsValid
     };
 }
-
-// export default useFormValidation;

@@ -9,52 +9,93 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import mainApi from '../../utils/MainApi';
+import Preloader from '../Preloader/Preloader';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import * as auth from '../../utils/auth';
 
 function App() {
   const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(false); // вошедший в систему
+  const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isSuccessRegister, setIsSuccessRegister] = useState(false);
   const [isSuccessLogin, setIsSuccessLogin] = useState(false);
-  const [isSuccessProfile, setIsSuccessProfile] = useState(false);
-  //проверка наличия пользователя, если есть то переходит в защищенные роуты
+  const [isSuccessUpdateProfile, setIsSuccessUpdateProfile] = useState(false);
   const [isUserChecked, setIsUserChecked] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [statusProfile, setStatusProfile] = useState({});
+  const [statusRegister, setStatusRegister] = useState({});
+  const [statusLogin, setStatusLogin] = useState({});
 
-  const handleRegistration = ({ name, password, email }) => {
+  //регистрация
+  const handleRegistration = (data) => {
     auth
-      .registration({ name, password, email })
+      .registration(data)
       .then(() => {
-        handleLogin({ password: password, email: email });
+        handleLogin({ password: data.password, email: data.email });
       })
       .catch((err) => {
-        console.log(err);
+        setIsSuccessRegister(false);
+        if (err.status === 500) {
+          setStatusRegister({ message: 'На сервере произошла ошибка' });
+        } else if (err.status === 409) {
+          setStatusRegister({
+            message: 'Пользователь с таким email уже существует',
+          });
+        } else {
+          setStatusRegister({
+            message: 'При регистрации пользователя произошла ошибка',
+          });
+        }
+        setTimeout(() => {
+          setStatusRegister('');
+        }, 3000);
       });
   };
 
-  const handleLogin = ({ password, email }) => {
+  //вход
+  const handleLogin = (data) => {
     auth
-      .authorization({ password, email })
+      .authorization(data)
       .then((res) => {
         localStorage.setItem('token', res.token);
         setLoggedIn(true);
         navigate('/movies');
       })
       .catch((err) => {
-        console.log(err);
+        setIsSuccessRegister(false);
+        if (err.status === 500) {
+          setStatusLogin({ message: 'На сервере произошла ошибка' });
+        } else if (err.status === 409) {
+          setStatusLogin({
+            message: 'Пользователь с таким email уже существует',
+          });
+        } else if (err.status === 401) {
+          setStatusLogin({ message: 'Вы ввели неправильный логин или пароль' });
+        } else {
+          setStatusLogin({ message: 'При авторизации произошла ошибка' });
+        }
+        setTimeout(() => {
+          setStatusLogin('');
+        }, 3000);
       });
   };
 
+  // выход
+  function logout() {
+    setLoggedIn(false);
+    localStorage.clear();
+    navigate('/');
+  }
+
+  //данные профиля
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (loggedIn) {
-     mainApi
+      mainApi
         .getProfileInfo(token)
         .then((data) => {
-          setCurrentUser(data);
+          setCurrentUser(data.user);
           setLoggedIn(true);
           setIsUserChecked(true);
         })
@@ -62,9 +103,40 @@ function App() {
           console.log(`Error: ${err}`);
           setIsUserChecked(true);
         });
-        
     }
   }, [loggedIn]);
+
+  //обновление профиля
+  function handleUpdateProfile({ name, email }) {
+    mainApi
+      .setProfileInfo({ name, email })
+      .then((data) => {
+        setCurrentUser(data.user);
+        setIsSuccessUpdateProfile(true);
+        setStatusProfile({ message: 'Вы успешно обновили профиль' });
+        setTimeout(() => {
+          setStatusProfile('');
+        }, 3000);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsSuccessUpdateProfile(false);
+        if (err.status === 500) {
+          setStatusProfile({ message: 'На сервере произошла ошибка' });
+        } else if (err.status === 409) {
+          setStatusProfile({
+            message: 'Пользователь с таким email уже существует',
+          });
+        } else {
+          setStatusProfile({
+            message: 'При обновлении пользователя произошла ошибка',
+          });
+        }
+        setTimeout(() => {
+          setStatusProfile('');
+        }, 3000);
+      });
+  }
 
   //проверка токена
   function checkToken() {
@@ -76,68 +148,86 @@ function App() {
           return;
         }
         setLoggedIn(true);
-        navigate('/');
       })
-      .catch((err) => setLoggedIn(false));
+      .catch((err) => setLoggedIn(false))
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   useEffect(() => {
     checkToken();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  function logout() {
-    setLoggedIn(false);
-    localStorage.removeItem('token');
-    setCurrentUser({ name: '', email: '' });
-  }
+
   return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
-        <Routes>
-          <Route path="/" element={<Main loggedIn={loggedIn} />}></Route>
-          <Route
-            path="/movies"
-            element={
-              <ProtectedRoute loggedIn={loggedIn}>
-                <Movies />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/saved-movies"
-            element={
-              <ProtectedRoute loggedIn={loggedIn}>
-                <SavedMovies />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute loggedIn={loggedIn}>
-                <Profile loggedIn={loggedIn} logout={logout} />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <Register
-                isSuccess={isSuccessRegister}
-                handleRegistration={handleRegistration}
-              />
-            }
-          ></Route>
-          <Route
-            path="/signin"
-            element={
-              <Login isSuccess={isSuccessLogin} handleLogin={handleLogin} />
-            }
-          ></Route>
-          <Route path="*" element={<PageNotFound />}></Route>
-        </Routes>
-      </div>
-    </CurrentUserContext.Provider>
+    <div className="page">
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <CurrentUserContext.Provider value={currentUser}>
+          <Routes>
+            <Route path="/" element={<Main loggedIn={loggedIn} />} />
+            <Route
+              path="/movies"
+              element={
+                <ProtectedRoute
+                  element={Movies}
+                  loggedIn={loggedIn}
+                  isLoading={isLoading}
+                />
+              }
+            />
+            <Route
+              path="/saved-movies"
+              element={
+                <ProtectedRoute
+                  element={SavedMovies}
+                  loggedIn={loggedIn}
+                  isLoading={isLoading}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute
+                  element={Profile}
+                  loggedIn={loggedIn}
+                  logout={logout}
+                  onUpdateProfile={handleUpdateProfile}
+                  isSuccessRequest={isSuccessUpdateProfile}
+                  status={statusProfile}
+                />
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <Register
+                  isSuccess={isSuccessRegister}
+                  handleRegistration={handleRegistration}
+                  isSuccessRequest={isSuccessRegister}
+                  status={statusRegister}
+                />
+              }
+            ></Route>
+            <Route
+              path="/signin"
+              element={
+                <Login
+                  isSuccess={isSuccessLogin}
+                  handleLogin={handleLogin}
+                  isSuccessRequest={isSuccessLogin}
+                  status={statusLogin}
+                />
+              }
+            ></Route>
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </CurrentUserContext.Provider>
+      )}
+    </div>
   );
 }
 export default App;

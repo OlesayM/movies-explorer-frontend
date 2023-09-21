@@ -1,33 +1,30 @@
 import '../Login/Login.css';
 import { Link } from 'react-router-dom';
 import { React, useState} from 'react';
+import { useFormValidation } from '../../hooks/useFormValidation';
+import { InputValidation } from '../../utils/validation';
 
-function Login({ handleLogin }) {
+function Login({ handleLogin, isSuccess, status:{message} }) {
+  const { values, handleChange, errors, isValid } = useFormValidation();
+  const [isInputActive, setIsInputActive] = useState(true);
+  const isDisabled = !isValid;
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+ 
 
-  function handleChangeEmail(e) {
-    setEmail(e.target.value);
-  }
-
-  function handleChangePassword(e) {
-    setPassword(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(event) {
+    event.preventDefault();
     handleLogin({
-      email: email,
-      password: password,
+      email: values.email,
+      password: values.password
     });
+    setIsInputActive(false);
   }
   
   return (
     <section className="login">
       <Link to="/" className="login__logo" />
       <h2 className="login__title">Рады видеть!</h2>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" noValidate>
         <fieldset className="form__container">
           <div className="form__input-container">
             <label className="form__label" htmlFor="email-input">E-mail</label>
@@ -38,13 +35,13 @@ function Login({ handleLogin }) {
               name="email"
               placeholder="E-mail"
               required
-              minLength="3"
-              maxLength="40"
-              value={email || ''}
-              onChange={handleChangeEmail}
+              pattern='^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$'
+              value={values.email || ''}
+              onChange={handleChange}
             />
-          {/* <span id="email-input-error"className="login__error login__error_visible">Текст</span> */}
-         
+          <span id="email-error" className={`login__error ${errors.email && 'login__error_visible'}`}>
+            {errors.email}
+          </span>
           </div>
 
           <div className="form__input-container">
@@ -56,16 +53,18 @@ function Login({ handleLogin }) {
               name="password"
               placeholder="Пароль"
               required
-              minLength="8"
+              minLength="6"
               maxLength="16"
-              value={password || ''}
-              onChange={handleChangePassword}
+              value={values.password || ''}
+              onChange={handleChange}
             />
-            {/* <span id="password-input-error"className="login__error login__error_visible">Текст</span> */}
+            <span id="password-error" className={`login__error ${errors.password && 'login__error_visible'}`}>
+            {errors.password}
+          </span>
           </div>
         </fieldset>
-
-        <button className= "login__button" type="submit"  >Войти</button>
+        <span className= {`login__server-status ${setIsInputActive? "login__server-status_visible" : ""}`}>{message}</span>
+        <button className={`login__button ${isDisabled && "login__button_disabled"}`} type="button" onClick={handleSubmit}>Войти</button>
         <div className="form__link-container">
           <p className="form__question">Ещё не зарегистрированы?</p>
           <Link to="/signup" className="login__link">Регистрация</Link>

@@ -4,75 +4,106 @@ import { Link } from 'react-router-dom';
 import './Profile.css';
 import Header from '../Header/Header';
 import { useFormValidation } from '../../hooks/useFormValidation';
+import { InputValidation } from '../../utils/validation';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function Profile( {loggedIn, logout}) {
+function Profile( {loggedIn, logout, onUpdateProfile, isSuccess, isSuccessRequest, status:{message}}) {
     
     const currentUser = useContext(CurrentUserContext);
-    const { values, handleChange, setValues, setIsValid, isValid, errors, resetForm } = useFormValidation();
-    const [isInfoChanged, setIsInfoChanged] = useState(false);
+    const { values, handleChange, setValues, isValid,  errors} = useFormValidation();
+
     const [isInputActive, setIsInputActive] = useState(false);
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    
-    useEffect(() => {
-      setName(currentUser.user.name);
-      setEmail(currentUser.user.email);
-    }, [currentUser]);
+    const isDisabled = !isValid;
+
+   useEffect(() => {
+      if (currentUser) {
+        setValues({
+          name: currentUser.name,
+          email: currentUser.email
+        })
+      }
+      }, [currentUser, setValues])
+
+
+//сохранить результаты редактирования
+    function handleSubmit(event) {
+      event.preventDefault();
+      setIsInputActive(false);
+      onUpdateProfile({name: values.name,
+        email: values.email});
+    }
+  //редактирование, разблокировать инпуты
+    function handleUpdateProfile(event) {
+      event.preventDefault();
+      setIsInputActive(true);
+      
+    }
+  
 
 
     return (
   <>
   <Header loggedIn={loggedIn}/>
       <section className="profile">
-        <h1 className="profile__greeting">Привет,{currentUser.user.name}!</h1>
-        <form className="profile__form">
+        <h1 className="profile__greeting">Привет,&nbsp;{currentUser.name}!</h1>
+        <form className="profile__form" noValidate>
   
           <label className="profile__label">
             <span className="profile__label-text">Имя</span>
             <input
               className="profile__input"
               type="text"
-              value={name || ''}
-              onChange={handleChange}
+              value={values.name || ''}
               id="name"
               name="name"
-              // placeholder="Имя"
-              // disabled={isInputActive}
+              onChange={handleChange}
+              placeholder="Имя"
+              required
+              minLength="2"
+              maxLength="30"
+              pattern="^[A-Za-zА-Яа-я\s]{2,30}$"
+              disabled={!isInputActive}
             />
           </label>
-          {/* <span id="name-input-error"className= " profile__error profile__error_visible"> Текст </span> */}
+          <span id="name-error" className={`profile__error ${errors.name && 'profile__error_visible'}`}>
+            {errors.name}
+          </span>
           <label className="profile__label">
             <span className="profile__label-text">E-mail</span>
             <input
               className="profile__input"
               type="email"
-              value={email || ''}
-              onChange={handleChange}
+              value={values.email || ''}
               id="email"
               name="email"
-              // placeholder="Email"
-              // disabled={!isInputActive}
+              pattern='^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$'
+              onChange={handleChange}
+              placeholder="Email"
+              disabled={!isInputActive}
             />
           </label> 
-          {/* <span id="email-input-error"className= " profile__error profile__error_visible">Текст</span> */}
-         
-          {!isInfoChanged
+          <span id="email-error" className={`profile__error ${errors.email && 'profile__error_visible'}`}>
+            {errors.email}
+          </span>
+        <span className= {`profile__server-status ${setIsInputActive? "profile__server-status_visible" : ""}`}>{message}</span> 
+          {!isInputActive
             ?
             <>
             <button
               className="profile__edit-button"
-              type="button">
+              type="button" onClick={handleUpdateProfile}>
               Редактировать
+              
             </button>
             <Link to="/" className="profile__link-exit" onClick={logout} >Выйти из аккаунта</Link>
             </> 
             : <>
-            {/* <span className= " profile__message profile__message_visible"> При обновлении профиля произошла ошибка </span> */}
+  
               <button
-              className="profile__save-button"
-                // className={`profile__save-button ${!isDisabled && "profile__save-button_disabled"}`}
-                type="submit"
+              // className="profile__save-button"
+                className={`profile__save-button ${isDisabled && "profile__save-button_disabled"}`}
+                type="button"
+                onClick={handleSubmit}
                 >
                 Сохранить
               </button></>

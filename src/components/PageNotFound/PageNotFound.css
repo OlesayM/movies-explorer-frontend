@@ -19,12 +19,16 @@
   margin: 5px 0 184px;
 }
 
-.not-found__back{
-color: #4285F4;
-font-size: 14px;
-font-weight: 400;
-line-height: normal;
-text-decoration: none;
+.not-found__back {
+  color: #4285f4;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+  border: none;
+  background: initial;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 1023px) {
@@ -32,9 +36,9 @@ text-decoration: none;
     margin-top: 408px;
   }
 
-  .not-found__back{
+  .not-found__back {
     margin-bottom: 222px;
-    }
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -54,9 +58,8 @@ text-decoration: none;
   .not-found__title {
     margin-top: 329px;
   }
-  
-  .not-found__back{
+
+  .not-found__back {
     margin-bottom: 30px;
-    }
-  
+  }
 }

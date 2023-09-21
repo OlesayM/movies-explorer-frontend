@@ -3,7 +3,7 @@ class MainApi {
       this._baseUrl = baseUrl;
       this._headers = headers;
     }
-  
+     
     // информация о пользователе с сервера
     getProfileInfo() {
       return fetch(`${this._baseUrl}/users/me`, {
@@ -14,7 +14,7 @@ class MainApi {
       })
       .then(this._checkResponseStatus)
     }
-  
+   
     //редактирование профиля
     setProfileInfo(name, email) {
       return fetch (`${this._baseUrl}/users/me`, {
@@ -23,10 +23,10 @@ class MainApi {
           authorization: this._getToken(),
           'Content-Type': 'application/json',
          },
-        body: JSON.stringify({
+        body: JSON.stringify(
           name,
           email
-        })
+        )
       })
       .then(this._checkResponseStatus)
     }
@@ -56,8 +56,8 @@ class MainApi {
     }
   
   //удаление
-    deleteMovie(data) {
-      return fetch (`${this._baseUrl}/movies/${data._id}`, {
+    deleteMovie(id) {
+      return fetch (`${this._baseUrl}/movies/${id}`, {
         method: 'DELETE',
         headers: {
           authorization: this._getToken(),
@@ -77,13 +77,14 @@ class MainApi {
       if (res.ok) {
         return res.json();
       }
-      return Promise.reject(`Ошибка: ${res.status}`)
+      return Promise.reject(res)
     }
   }
   
   //создание экземпляра класса
   const mainApi = new MainApi({
-    baseUrl: 'http://localhost:4000',
+    // baseUrl: 'http://localhost:4000',
+    baseUrl: 'https://api.movie.olesaym.nomoredomainsicu.ru',
   });
   
   export default mainApi;

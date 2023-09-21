@@ -118,6 +118,18 @@
   left: calc(100% - 5px);
   transform: translateX(-100%);
 }
+.search__error {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.38;
+  color: #EE3465;
+  margin-left: 40px;
+  display: none;
+}
+
+.search__error_active {
+  display: block;
+}
 
 @media screen and (max-width: 1023px) {
   .search {
@@ -148,7 +160,6 @@
     .search__input-search{
       width: 238px;
       height: 44px;
-      padding: 0;
     }
    
     .search__box-checkbox {
