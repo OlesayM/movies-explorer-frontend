@@ -1,4 +1,4 @@
-const BASE_URL ='http://localhost:4000';
+const BASE_URL ='https://api.movie.olesaym.nomoredomainsicu.ru';
 //'api.movie.olesaym.nomoredomainsicu.ru'
 
 export const registration = ( {name, email, password} ) => {
