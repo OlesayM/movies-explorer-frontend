@@ -83,8 +83,8 @@ class MainApi {
   
   //создание экземпляра класса
   const mainApi = new MainApi({
-    baseUrl: 'http://localhost:4000',
-    // baseUrl: 'https://api.movie.olesaym.nomoredomainsicu.ru',
+    // baseUrl: 'http://localhost:4000',
+    baseUrl: 'https://api.movie.olesaym.nomoredomainsicu.ru',
   });
   
   export default mainApi;
