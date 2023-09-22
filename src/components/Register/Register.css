@@ -30,7 +30,7 @@
   padding: 0;
   margin: 0;
   border: 0;
-  margin: 40px 0 69px;
+  margin: 40px 0 49px;
   min-height: 267px;
 }
 
@@ -104,8 +104,14 @@
 .register__button_disabled {
   background-color: #f8f8f8;
   color: #c2c2c2;
-  cursor: default;
+  pointer-events: none;
+  font-size: 14px;
+  padding: 14px;
+  width: 100%;
+  border: none;
+  border-radius: 3px;
 }
+
 
 .form__link-container {
   display: flex;
@@ -132,6 +138,20 @@
 
 .register__link:hover {
   opacity: 0.7;
+}
+.register__server-status {
+  padding-bottom: 20px;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+  color: #ee3465;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.register__server-status_visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 @media screen and (max-width: 768px) {

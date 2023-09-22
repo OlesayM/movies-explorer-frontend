@@ -4,7 +4,18 @@
   width: calc(100% - 70px * 2);
   margin: auto;
 }
+.movies__error {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.38;
+  color: #EE3465;
+  text-align: center;
+  display: none;
+}
 
+.movies__error_active {
+  display: block;
+}
 @media screen and (max-width: 1023px) {
   .movies-page {
     width: calc(100% - 30px * 2);
