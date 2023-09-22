@@ -1,5 +1,5 @@
 const BASE_URL ='https://api.movie.olesaym.nomoredomainsicu.ru';
-//'api.movie.olesaym.nomoredomainsicu.ru'
+// const BASE_URL ='http://localhost:4000';
 
 export const registration = ( {name, email, password} ) => {
     return fetch(`${BASE_URL}/signup`, {

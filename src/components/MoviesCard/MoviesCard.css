@@ -48,11 +48,11 @@
   top: 10px;
   right: 10px;
   font-size: 0;
-  opacity: 0;
-}
-.card-movie:hover .card-movie__save-btn_type_active {
   opacity: 1;
 }
+/* .card-movie:hover .card-movie__save-btn_type_active {
+  opacity: 1;
+} */
 .card-movie__save-btn_type_active:hover {
   cursor: pointer;
   opacity: 0.8;
