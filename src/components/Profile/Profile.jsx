@@ -11,9 +11,13 @@ function Profile( {loggedIn, logout, onUpdateProfile, isSuccess, isSuccessReques
     
     const currentUser = useContext(CurrentUserContext);
     const { values, handleChange, setValues, isValid,  errors} = useFormValidation();
-
+    const initialValues = {
+      name: currentUser.name || "",
+      email: currentUser.email || "",
+    };
+    const isFormChanged = values.name !== initialValues.name || values.email !== initialValues.email;
     const [isInputActive, setIsInputActive] = useState(false);
-    const isDisabled = !isValid;
+    const isDisabled = !isValid || !isFormChanged;
 
    useEffect(() => {
       if (currentUser) {

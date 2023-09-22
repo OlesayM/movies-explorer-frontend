@@ -9,25 +9,44 @@ import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 import { filterMovies, filterShortFilm } from '../../utils/utils';
 import Preloader from '../Preloader/Preloader';
+import {
+  MOVIES_DESKTOP,
+  MOVIES_TABLET,
+  MOVIES_MOBILE,
+  MORE_FOR_DESKTOP,
+  MORE_FOR_TABLET,
+  MORE_FOR_MOBILE,
+  DESKTOP_SCREEN,
+  TABLET_SCREEN,
+  MOBILE_SCREEN,
+} from '../../utils/constants';
 
 function Movies({ loggedIn, savedMoviesUser, onMovieSave, onSaveMovie }) {
   const [isLoading, setIsLoading] = useState(false);
   const [movieList, setMovieList] = useState([]);
   const [savedMovieList, setSavedMovieList] = useState([]);
   const [errorSearch, setErrorSearch] = useState('');
-  const [statusCheckBox, setStatusCheckBox] = useState(JSON.parse(localStorage.getItem('shortFilmChecked')) || false);
+  const [statusCheckBox, setStatusCheckBox] = useState(
+    JSON.parse(localStorage.getItem('shortFilmChecked')) || false
+  );
   const [filtredResult, setFiltredResult] = useState([]);
   const [query, setQuery] = useState(localStorage.getItem('textQuery') || '');
   const [initialValue, setInitialValue] = useState(0);
+  const [moreButton, setMoreButton] = useState(0);
 
   function findSaveMoviesById(movie, savedMovies) {
     return savedMovies.find((saveMovie) => saveMovie.movieId === movie.id);
   }
 
-  const updatedSearchResults = filtredResult.map((item) => ({ ...item, isSave: findSaveMoviesById(item, savedMovieList) }));
+  const updatedSearchResults = filtredResult.map((item) => ({
+    ...item,
+    isSave: findSaveMoviesById(item, savedMovieList),
+  }));
 
   useEffect(() => {
-    const savedFilteredSearchMovies = localStorage.getItem('filtredSearchMovies');
+    const savedFilteredSearchMovies = localStorage.getItem(
+      'filtredSearchMovies'
+    );
     const storedSavedMovies = localStorage.getItem('savedMoviesLocalStorage');
     setMovieList(JSON.parse(savedFilteredSearchMovies));
     if (savedFilteredSearchMovies) {
@@ -40,18 +59,28 @@ function Movies({ loggedIn, savedMoviesUser, onMovieSave, onSaveMovie }) {
 
   function filteringMoviesForSearch(filteredMovies) {
     if (statusCheckBox) {
-      const filteredShortMovies = filterShortFilm(filteredMovies, statusCheckBox);
-      localStorage.setItem('filtredSearchMovies', JSON.stringify(filteredShortMovies));
+      const filteredShortMovies = filterShortFilm(
+        filteredMovies,
+        statusCheckBox
+      );
+      localStorage.setItem(
+        'filtredSearchMovies',
+        JSON.stringify(filteredShortMovies)
+      );
       localStorage.setItem('textQuery', query);
       setFiltredResult(filteredShortMovies);
     } else {
       setFiltredResult(filteredMovies);
-      localStorage.setItem('filtredSearchMovies', JSON.stringify(filteredMovies));
+      localStorage.setItem(
+        'filtredSearchMovies',
+        JSON.stringify(filteredMovies)
+      );
       localStorage.setItem('textQuery', query);
     }
   }
 
   function handleSearch() {
+    displayMovies();
     const dataStorageMovies = localStorage.getItem('allMovies');
     if (dataStorageMovies) {
       setMovieList(JSON.parse(dataStorageMovies));
@@ -64,7 +93,10 @@ function Movies({ loggedIn, savedMoviesUser, onMovieSave, onSaveMovie }) {
         .getSavedMoviesList()
         .then((data) => {
           setSavedMovieList(data.movies);
-          localStorage.setItem('savedMoviesLocalStorage', JSON.stringify(data.movies));
+          localStorage.setItem(
+            'savedMoviesLocalStorage',
+            JSON.stringify(data.movies)
+          );
         })
         .catch((err) => {
           console.log(err);
@@ -77,6 +109,7 @@ function Movies({ loggedIn, savedMoviesUser, onMovieSave, onSaveMovie }) {
           const filteredMovies = filterMovies(res, query);
           filteringMoviesForSearch(filteredMovies);
           localStorage.setItem('shortFilmChecked', statusCheckBox);
+          setInitialValue(initialValue);
         })
         .catch((err) => {
           setErrorSearch(
@@ -111,45 +144,54 @@ function Movies({ loggedIn, savedMoviesUser, onMovieSave, onSaveMovie }) {
     const filteredMovies = filterMovies(JSON.parse(dataStorageMovies), query);
 
     if (statusCheckBox) {
-      const filteredShortMovies = filterShortFilm(filteredMovies, statusCheckBox);
-      localStorage.setItem('filtredSearchMovies', JSON.stringify(filteredShortMovies));
+      const filteredShortMovies = filterShortFilm(
+        filteredMovies,
+        statusCheckBox
+      );
+      localStorage.setItem(
+        'filtredSearchMovies',
+        JSON.stringify(filteredShortMovies)
+      );
       setFiltredResult(filteredShortMovies);
       setStatusCheckBox(true);
       localStorage.setItem('shortFilmChecked', statusCheckBox);
     } else {
       setFiltredResult(filteredMovies);
-      localStorage.setItem('filtredSearchMovies', JSON.stringify(filteredMovies));
+      localStorage.setItem(
+        'filtredSearchMovies',
+        JSON.stringify(filteredMovies)
+      );
       setStatusCheckBox(false);
       localStorage.setItem('shortFilmChecked', statusCheckBox);
     }
   };
+  useEffect(() => {
+    displayMovies();
+  }, []);
 
   //отрисовываю карточки в нужном колличестве
   function displayMovies() {
     const display = window.innerWidth;
-    if (display < 658) {
-      setInitialValue(5);
-    } else if (display <= 1279) {
-      setInitialValue(8);
-    } else if (display >= 1280) {
-      setInitialValue(12);
+    if (display < MOBILE_SCREEN) {
+      setInitialValue(MOVIES_MOBILE);
+    } else if (display <= TABLET_SCREEN) {
+      setInitialValue(MOVIES_TABLET);
+    } else if (display >= DESKTOP_SCREEN) {
+      setInitialValue(MOVIES_DESKTOP);
     }
   }
+
   //добавить еще карточки
   const handleMoreButtonClick = useCallback(() => {
     const display = window.innerWidth;
-    if (display < 659) {
-      setInitialValue(initialValue + 2);
-    } else if (display <= 1279) {
-      setInitialValue(initialValue + 2);
-    } else if (display >= 1280) {
-      setInitialValue(initialValue + 3);
+    if (display < MOBILE_SCREEN) {
+      setInitialValue(initialValue + MORE_FOR_MOBILE);
+    } else if (display <= TABLET_SCREEN) {
+      setInitialValue(initialValue + MORE_FOR_TABLET);
+    } else if (display >= DESKTOP_SCREEN) {
+      setInitialValue(initialValue + MORE_FOR_DESKTOP);
     }
   }, [initialValue]);
-
-  useEffect(() => {
-    displayMovies();
-  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -163,7 +205,7 @@ function Movies({ loggedIn, savedMoviesUser, onMovieSave, onSaveMovie }) {
   return (
     <>
       <Header loggedIn={loggedIn} />
-      <section className='movies-page'>
+      <section className="movies-page">
         <SearchForm
           handleSearch={handleSearch}
           query={query}
@@ -187,7 +229,11 @@ function Movies({ loggedIn, savedMoviesUser, onMovieSave, onSaveMovie }) {
           />
         )}
         {initialValue < filtredResult.length && (
-          <MoreButton initialValue={initialValue} setInitialValue={setInitialValue} handleMoreButtonClick={handleMoreButtonClick} />
+          <MoreButton
+            initialValue={initialValue}
+            setInitialValue={setInitialValue}
+            handleMoreButtonClick={handleMoreButtonClick}
+          />
         )}
       </section>
       <Footer loggedIn={loggedIn} />

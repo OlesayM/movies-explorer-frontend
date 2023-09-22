@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './App.css';
 import Main from '../Main/Main';
@@ -204,23 +204,31 @@ function App() {
             <Route
               path="/signup"
               element={
-                <Register
+                loggedIn ? (
+                  <Navigate to="/movies" replace />
+                ) : (
+                  <Register
                   isSuccess={isSuccessRegister}
                   handleRegistration={handleRegistration}
                   isSuccessRequest={isSuccessRegister}
                   status={statusRegister}
                 />
+                )
               }
             ></Route>
             <Route
               path="/signin"
               element={
-                <Login
+                loggedIn ? (
+                  <Navigate to="/movies" replace />
+                ) : (
+                  <Login
                   isSuccess={isSuccessLogin}
                   handleLogin={handleLogin}
                   isSuccessRequest={isSuccessLogin}
                   status={statusLogin}
                 />
+                )
               }
             ></Route>
             <Route path="*" element={<PageNotFound />} />

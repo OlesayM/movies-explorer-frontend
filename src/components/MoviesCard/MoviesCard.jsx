@@ -21,7 +21,6 @@ function MoviesCard({ card, onDeleteMovie, setSavedMovies, savedMovies }) {
       }
     } else {
       onDeleteMovie(card._id);
-      console.log(card._id);
     }
   }
   //сохраняю

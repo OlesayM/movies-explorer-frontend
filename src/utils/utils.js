@@ -1,4 +1,4 @@
-import { shortMovieDuration } from './constants';
+import { DURATION } from './constants';
 
 export function filterMovies(arr, query) {
   const filteredMovies = arr.filter((item) => {
@@ -14,7 +14,7 @@ export function filterMovies(arr, query) {
 }
 export function filterShortFilm(movies, statusCheckBox) {
   if (statusCheckBox) {
-    return movies.filter((film) => film.duration <= shortMovieDuration);
+    return movies.filter((film) => film.duration <= DURATION);
   }
  
 }
